@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 import { checkAdminAuth } from "@/lib/admin-auth";
+import type { BookingStatus } from "@/lib/database.types";
 
 export async function PATCH(
   req: Request,
@@ -9,15 +10,15 @@ export async function PATCH(
   const authError = checkAdminAuth(req);
   if (authError) return authError;
 
-  const { status } = await req.json();
-  const allowed = ["new", "confirmed", "cancelled"];
-  if (!allowed.includes(status)) {
+  const { status } = (await req.json()) as { status?: unknown };
+  const allowed: BookingStatus[] = ["new", "confirmed", "cancelled"];
+  if (typeof status !== "string" || !allowed.includes(status as BookingStatus)) {
     return NextResponse.json({ error: "Недопустимый статус" }, { status: 400 });
   }
 
   const { data, error } = await supabase
     .from("bookings")
-    .update({ status })
+    .update({ status: status as BookingStatus })
     .eq("id", params.id)
     .select()
     .single();

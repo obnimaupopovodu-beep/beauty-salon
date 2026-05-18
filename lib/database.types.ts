@@ -1,4 +1,11 @@
 export type BookingStatus = "new" | "confirmed" | "cancelled";
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[];
 
 export interface Booking {
   id: string;
@@ -22,7 +29,20 @@ export interface Database {
           created_at?: string;
         };
         Update: Partial<Omit<Booking, "id" | "created_at">>;
+        Relationships: [];
       };
+    };
+    Views: {
+      [_ in never]: never;
+    };
+    Functions: {
+      [_ in never]: never;
+    };
+    Enums: {
+      [_ in never]: never;
+    };
+    CompositeTypes: {
+      [_ in never]: never;
     };
   };
 }

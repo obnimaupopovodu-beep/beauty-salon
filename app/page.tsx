@@ -324,7 +324,7 @@ export default function Page() {
             <SectionTitle
               eyebrow="Контакты"
               title="Как добраться и когда лучше звонить"
-              text="Сделали контактный блок максимально прикладным: адрес, часы, маршрут, телефон."
+              text="Сделали контактный блок максимально прикладным: адрес, часы, маршрут, телефон и важная информация о доступности."
             />
             <div className="mt-10 grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
               <address className="not-italic rounded-[2rem] border border-stone-200/80 bg-white p-6">
