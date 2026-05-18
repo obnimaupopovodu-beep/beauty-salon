@@ -284,7 +284,7 @@ export default function Page() {
             </div>
           </section>
 
-          {/* СЕКЦИЯ ЗАПИСИ — теперь с живой формой */}
+          {/* СЕКЦИЯ ЗАПИСИ */}
           <section id="booking" className="bg-stone-900 text-stone-100">
             <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-24">
               <div>
@@ -319,6 +319,7 @@ export default function Page() {
             </div>
           </section>
 
+          {/* КОНТАКТЫ */}
           <section id="contacts" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
             <SectionTitle
               eyebrow="Контакты"
@@ -344,18 +345,19 @@ export default function Page() {
                   </a>
                 </div>
               </address>
-              <div className="overflow-hidden rounded-[2rem] border border-stone-200/80 bg-stone-100">
-                <div className="flex h-full min-h-[360px] flex-col justify-between bg-[linear-gradient(135deg,_rgba(231,221,210,0.95),_rgba(244,239,233,0.85))] p-6">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.22em] text-stone-500">Карта и маршрут</p>
-                    <p className="mt-3 max-w-md text-sm leading-7 text-stone-700">
-                      Здесь лучше разместить интерактивную карту Яндекс или 2ГИС.
-                    </p>
-                  </div>
-                  <a href={business.routeHref} target="_blank" rel="noreferrer" className="inline-flex w-fit items-center justify-center rounded-full border border-stone-400 bg-white px-6 py-4 text-sm font-semibold text-stone-900 transition hover:border-stone-900">
-                    Открыть маршрут
-                  </a>
-                </div>
+
+              {/* Яндекс.Карты — виджет организации 1221763109 */}
+              <div className="overflow-hidden rounded-[2rem] border border-stone-200/80 bg-stone-100 shadow-sm">
+                <iframe
+                  src="https://yandex.ru/map-widget/v1/?um=constructor%3A1221763109&amp;source=constructor&amp;ll=37.713717%2C55.755438&amp;z=16&amp;pt=37.713717%2C55.755438&amp;text=%D0%9F%D0%B0%D1%80%D0%B8%D0%BA%D0%BC%D0%B0%D1%85%D0%B5%D1%80%D1%81%D0%BA%D0%B0%D1%8F&amp;oid=1221763109&amp;ol=biz"
+                  width="100%"
+                  height="400"
+                  frameBorder="0"
+                  allowFullScreen
+                  title="Парикмахерская на Яндекс.Картах"
+                  className="block w-full"
+                  style={{ minHeight: "360px", border: "none" }}
+                />
               </div>
             </div>
           </section>
