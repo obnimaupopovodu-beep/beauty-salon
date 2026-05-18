@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", "Noto Sans",
+    "Liberation Sans", sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua",
+    "Times New Roman", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+}
+
+::selection {
+  background: rgba(41, 37, 36, 0.14);
+}
