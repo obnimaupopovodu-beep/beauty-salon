@@ -2,13 +2,26 @@ import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 import { bookingSchema } from "@/lib/validations";
 import { sendTelegramNotification } from "@/lib/telegram";
+import { rateLimit } from "@/lib/rate-limit";
 
-// POST /api/bookings — создать новую запись
 export async function POST(req: Request) {
+  // Rate limiting: 5 заявок в минуту с одного IP
+  const ip =
+    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+    req.headers.get("x-real-ip") ??
+    "unknown";
+
+  const { success } = rateLimit(ip, { limit: 5, windowMs: 60_000 });
+  if (!success) {
+    return NextResponse.json(
+      { error: "Слишком много запросов. Попробуйте через минуту." },
+      { status: 429 }
+    );
+  }
+
   try {
     const body = await req.json();
 
-    // Валидация через Zod
     const parsed = bookingSchema.safeParse(body);
     if (!parsed.success) {
       return NextResponse.json(
@@ -19,7 +32,6 @@ export async function POST(req: Request) {
 
     const data = parsed.data;
 
-    // Сохраняем в Supabase
     const { data: booking, error } = await supabase
       .from("bookings")
       .insert([{
@@ -37,12 +49,11 @@ export async function POST(req: Request) {
     if (error) {
       console.error("Supabase error:", error);
       return NextResponse.json(
-        { error: "Не удалось сохранить запись" },
+        { error: "Не удалось сохранить заявку" },
         { status: 500 }
       );
     }
 
-    // Отправляем уведомление в Telegram (не блокируем ответ)
     sendTelegramNotification(booking).catch(console.error);
 
     return NextResponse.json({ success: true, booking }, { status: 201 });
