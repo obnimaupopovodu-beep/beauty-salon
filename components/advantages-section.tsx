@@ -2,21 +2,14 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 import { SectionTitle } from "@/components/section-title";
+import imgResult from "@/imgs/result.png";
 
 type AdvantageItem = {
   title: string;
   text: string;
 };
-
-const decorativeWords = [
-  "Proficiency",
-  "Expertise",
-  "Craft",
-  "Mastery",
-  "Precision",
-  "Quality",
-];
 
 export function AdvantagesSection({
   advantages,
@@ -28,78 +21,52 @@ export function AdvantagesSection({
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-      <SectionTitle
-        eyebrow="Почему здесь удобно"
-        title="Салон, где важны не обещания, а результат"
-        text="Рейтинг 4,9 — не случайность."
-      />
-
-      <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_auto]">
-        {/* Карточки преимуществ */}
-        <div className="grid gap-5 md:grid-cols-2">
-          {advantages.map((item, i) => (
-            <motion.article
-              key={item.title}
-              initial={{ opacity: 0, y: 18 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.5,
-                delay: i * 0.09,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="rounded-[2rem] border border-stone-200/80 bg-white p-6"
-            >
-              <h3 className="text-xl font-semibold text-stone-900">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-sm leading-7 text-stone-600">
-                {item.text}
-              </p>
-            </motion.article>
-          ))}
-        </div>
-
-        {/* Декоративная колонка — только десктоп */}
-        <div
-          ref={ref}
-          className="relative hidden w-[180px] select-none overflow-hidden rounded-[2rem] border border-stone-200/80 bg-stone-50 lg:flex lg:flex-col lg:items-center lg:justify-center"
-          aria-hidden
+      {/* Шапка: заголовок + картинка в правом углу на одном уровне */}
+      <div className="flex items-start justify-between gap-6">
+        <SectionTitle
+          eyebrow="Почему здесь удобно"
+          title="Салон, где важны не обещания, а результат"
+          text="Рейтинг 4,9 — не случайность."
+        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92, y: -8 }}
+          animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden shrink-0 lg:block"
         >
-          {/* Вертикальная линия */}
-          <motion.div
-            initial={{ scaleY: 0 }}
-            animate={inView ? { scaleY: 1 } : {}}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            style={{ originY: 0 }}
-            className="absolute inset-x-1/2 top-8 bottom-8 w-px -translate-x-1/2 bg-stone-300"
+          <Image
+            src={imgResult}
+            alt="Результат работы мастера"
+            width={160}
+            height={160}
+            className="rounded-[1.5rem] border border-stone-200/80 object-cover shadow-sm"
+            loading="lazy"
           />
+        </motion.div>
+      </div>
 
-          {/* Слова */}
-          <div className="flex flex-col items-center gap-10 py-8">
-            {decorativeWords.map((word, i) => (
-              <motion.span
-                key={word}
-                initial={{ opacity: 0, x: -8 }}
-                animate={inView ? { opacity: i === 0 ? 0.9 : 0.22 + i * 0.04, x: 0 } : {}}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.2 + i * 0.07,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="font-display text-sm tracking-[0.22em] text-stone-400"
-                style={{
-                  writingMode: "vertical-rl",
-                  textOrientation: "mixed",
-                  letterSpacing: "0.22em",
-                  fontWeight: i === 0 ? 600 : 400,
-                  color: i === 0 ? "#292524" : undefined,
-                }}
-              >
-                {word}
-              </motion.span>
-            ))}
-          </div>
-        </div>
+      {/* Карточки преимуществ */}
+      <div ref={ref} className="mt-10 grid gap-5 md:grid-cols-2">
+        {advantages.map((item, i) => (
+          <motion.article
+            key={item.title}
+            initial={{ opacity: 0, y: 18 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{
+              duration: 0.5,
+              delay: i * 0.09,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="rounded-[2rem] border border-stone-200/80 bg-white p-6"
+          >
+            <h3 className="text-xl font-semibold text-stone-900">
+              {item.title}
+            </h3>
+            <p className="mt-3 text-sm leading-7 text-stone-600">
+              {item.text}
+            </p>
+          </motion.article>
+        ))}
       </div>
     </section>
   );
