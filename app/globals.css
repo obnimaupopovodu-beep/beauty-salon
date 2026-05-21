@@ -26,16 +26,16 @@ body {
 
 /* ─── Декоративные фигуры ────────────────────────────────────────
    Схема:
-   1. Родитель: position:relative + overflow:hidden
-   2. Фигуры: position:absolute + z-index:-1  → уходят ЗА фон родителя
-   3. Контент: position:relative + isolation:isolate  → создаёт
-      собственный stacking context, поэтому z-index фигур (-1)
-      считается относительно родителя, а не страницы.
-      Без isolation фигуры могут уйти под background-color родителя.
+   1. Родитель секции: position:relative + overflow:hidden
+   2. Фигуры: position:absolute + z-index:0
+      → поверх фона секции, но НИЖЕ контента (.section-inner)
+   3. .section-inner: position:relative + z-index:1 + isolation:isolate
+      → создаёт свой stacking context поверх фигур
+      → клики и текст всегда работают
 ──────────────────────────────────────────────────────────────────── */
 [class*="ornament-"] {
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
   user-select: none;
 }
@@ -43,6 +43,7 @@ body {
 /* Оборачивай реальный контент секции в этот класс */
 .section-inner {
   position: relative;
+  z-index: 1;
   isolation: isolate;
 }
 
