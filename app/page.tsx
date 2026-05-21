@@ -3,6 +3,7 @@ import { SectionTitle } from "@/components/section-title";
 import { BookingForm } from "@/components/booking-form";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { AdvantagesSection } from "@/components/advantages-section";
+import { DarkParallaxLayer } from "@/components/dark-parallax-layer";
 import salonLogo from "@/imgs/icon.png";
 import imgInterier from "@/imgs/interier.webp";
 import imgHaircut from "@/imgs/haircut.webp";
@@ -23,7 +24,6 @@ import {
   trustPoints,
 } from "@/lib/site";
 
-// z-index:10 — фигуры поверх контента, но клики не перехватывают
 const O: React.CSSProperties = {
   position: "absolute",
   zIndex: 10,
@@ -65,7 +65,7 @@ export default function Page() {
         </header>
 
         <main id="top">
-          {/* ── Первый экран ─────────────────────────────────────────── */}
+          {/* Первый экран */}
           <section className="relative overflow-hidden">
             <div aria-hidden className="ornament-blob" style={{ ...O, left: "-4rem", top: "3rem", width: "18rem", height: "18rem", opacity: 0.65 }} />
             <div aria-hidden className="ornament-wave" style={{ ...O, right: "-3rem", top: "1rem", width: "28rem", height: "12rem", opacity: 0.55 }} />
@@ -104,7 +104,6 @@ export default function Page() {
                   </div>
                 </dl>
               </div>
-
               <aside className="relative z-20 flex flex-col gap-5 lg:pl-4">
                 <div className="relative overflow-hidden rounded-[2rem] border border-stone-200/80 shadow-sm" style={{ aspectRatio: "4/3" }}>
                   <Image src={imgInterier} alt="Интерьер салона красоты Шарм" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" priority />
@@ -143,11 +142,10 @@ export default function Page() {
             </div>
           </section>
 
-          {/* Акции */}
+          {/* Акции — тёмная секция с параллаксом */}
           <section aria-label="Акции" className="relative overflow-hidden bg-stone-900 text-stone-100">
-            <div aria-hidden className="ornament-wave ornament-wave-dark" style={{ ...O, left: "-4rem", top: 0, width: "22rem", height: "12rem", opacity: 0.3 }} />
-            <div aria-hidden className="ornament-rings" style={{ ...O, bottom: "-3rem", right: "-1rem", width: "12rem", height: "12rem", opacity: 0.25 }} />
-            <div className="relative z-20 mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+            <DarkParallaxLayer speed={0.25} />
+            <div className="relative z-10 mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
               <p className="text-xs uppercase tracking-[0.24em] text-stone-400">Акции сейчас</p>
               <div className="mt-5 grid gap-4 sm:grid-cols-3">
                 {promos.map((promo) => (
@@ -213,9 +211,10 @@ export default function Page() {
           {/* Преимущества */}
           <AdvantagesSection advantages={advantages} />
 
-          {/* О салоне */}
-          <section className="bg-stone-900 text-stone-100">
-            <div className="mx-auto grid max-w-7xl gap-0 px-0 lg:grid-cols-2">
+          {/* О салоне — тёмная секция с параллаксом */}
+          <section className="relative overflow-hidden bg-stone-900 text-stone-100">
+            <DarkParallaxLayer speed={0.3} />
+            <div className="relative z-10 mx-auto grid max-w-7xl gap-0 px-0 lg:grid-cols-2">
               <div className="relative min-h-[320px] overflow-hidden lg:min-h-[480px]">
                 <Image src={imgHaircut2} alt="Мастер за работой в салоне Шарм" fill className="object-cover object-center" sizes="50vw" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-stone-900/60 lg:bg-gradient-to-l" />
@@ -276,11 +275,10 @@ export default function Page() {
             </div>
           </section>
 
-          {/* Форма записи */}
+          {/* Форма записи — тёмная секция с параллаксом */}
           <section id="booking" className="relative overflow-hidden bg-stone-900 text-stone-100">
-            <div aria-hidden className="ornament-blob" style={{ ...O, left: "-5rem", bottom: "-4rem", width: "18rem", height: "18rem", opacity: 0.18 }} />
-            <div aria-hidden className="ornament-wave ornament-wave-dark" style={{ ...O, right: "-2rem", top: "2rem", width: "24rem", height: "13rem", opacity: 0.2 }} />
-            <div className="relative z-20 mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-24">
+            <DarkParallaxLayer speed={0.22} />
+            <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-24">
               <div>
                 <p className="text-xs uppercase tracking-[0.24em] text-stone-400">Форма записи</p>
                 <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">Запишитесь — администратор подтвердит удобное время</h2>
