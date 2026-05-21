@@ -7,6 +7,7 @@ import {
   jsonLd,
   popularServices,
   prices,
+  promos,
   reviews,
   serviceGroups,
   trustPoints,
@@ -64,15 +65,15 @@ export default function Page() {
             <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-24">
               <div className="max-w-3xl">
                 <div className="inline-flex items-center rounded-full border border-stone-200 bg-white/80 px-4 py-2 text-xs font-medium text-stone-600 shadow-sm shadow-stone-200/40">
-                  {business.metroDistance} от метро {business.metro} • {business.schedule.today}
+                  Метро «{business.metro}» • {business.schedule.today}
                 </div>
 
                 <h1 className="mt-6 max-w-4xl font-display text-5xl leading-[0.95] text-stone-900 sm:text-6xl lg:text-7xl">
-                  Салон красоты на Авиамоторной для стрижки, маникюра и ухода без долгой дороги по городу
+                  Салон красоты «Шарм» на ВДНХ: стрижки, барбер-услуги и маникюр с заботой о каждом клиенте
                 </h1>
 
                 <p className="mt-6 max-w-2xl text-base leading-8 text-stone-600 sm:text-lg">
-                  Женский и мужской зал, ногтевой сервис и косметология рядом с метро. Можно быстро позвонить, выбрать удобное время или оставить заявку прямо на сайте.
+                  Женские и детские стрижки, барбер-зал, ногтевой сервис, массаж и эпиляция — всё рядом с метро. Можно быстро позвонить, выбрать время или оставить заявку на сайте.
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -108,8 +109,8 @@ export default function Page() {
                     <dd className="mt-2 text-2xl font-semibold text-stone-900">{business.ratingCount}</dd>
                   </div>
                   <div className="rounded-3xl border border-stone-200/80 bg-white/80 p-5 shadow-sm shadow-stone-200/50">
-                    <dt className="text-xs uppercase tracking-[0.22em] text-stone-500">Отзывов</dt>
-                    <dd className="mt-2 text-2xl font-semibold text-stone-900">{business.reviewCount}</dd>
+                    <dt className="text-xs uppercase tracking-[0.22em] text-stone-500">Яндекс Карты</dt>
+                    <dd className="mt-2 text-2xl font-semibold text-stone-900">4,9 / 5</dd>
                   </div>
                 </dl>
               </div>
@@ -117,7 +118,7 @@ export default function Page() {
               <aside className="relative lg:pl-6">
                 <div className="rounded-[2rem] border border-stone-200/80 bg-white/90 p-6 shadow-soft">
                   <div className="rounded-[1.5rem] bg-stone-900 px-5 py-4 text-white">
-                    <p className="text-xs uppercase tracking-[0.24em] text-stone-300">Сегодня удобно</p>
+                    <p className="text-xs uppercase tracking-[0.24em] text-stone-300">Сейчас выгодно</p>
                     <p className="mt-2 text-xl font-semibold">Позвонить или оставить заявку ниже</p>
                   </div>
                   <div className="mt-5 space-y-3">
@@ -130,13 +131,13 @@ export default function Page() {
                   <div className="mt-6 rounded-[1.5rem] border border-dashed border-stone-300 px-4 py-5">
                     <p className="text-sm font-semibold text-stone-900">Режим работы</p>
                     <p className="mt-2 text-sm text-stone-600">{business.schedule.weekdays}</p>
-                    <p className="text-sm text-stone-600">{business.schedule.sunday}</p>
                   </div>
                 </div>
               </aside>
             </div>
           </section>
 
+          {/* Блок доверия */}
           <section aria-label="Доверие" className="border-y border-stone-200/80 bg-white/70">
             <div className="mx-auto grid max-w-7xl gap-4 px-4 py-6 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
               {trustPoints.map((point) => (
@@ -147,11 +148,26 @@ export default function Page() {
             </div>
           </section>
 
+          {/* Акции */}
+          <section aria-label="Акции" className="bg-stone-900 text-stone-100">
+            <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+              <p className="text-xs uppercase tracking-[0.24em] text-stone-400">Акции сейчас</p>
+              <div className="mt-5 grid gap-4 sm:grid-cols-3">
+                {promos.map((promo) => (
+                  <div key={promo.label} className="rounded-2xl border border-stone-700 bg-stone-800 px-5 py-5">
+                    <p className="text-xl font-semibold text-white">{promo.label}</p>
+                    <p className="mt-2 text-sm text-stone-400">{promo.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
           <section id="services" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
             <SectionTitle
               eyebrow="Популярные услуги"
               title="То, за чем к нам чаще всего приходят"
-              text="Стартовые цены помогают быстро сориентироваться. Если нужен точный расчёт, администратор подскажет по телефону."
+              text="Стартовые цены помогают быстро ориентироваться. Если нужен точный расчёт, администратор подскажет по телефону."
             />
             <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
               {popularServices.map((service) => (
@@ -177,8 +193,8 @@ export default function Page() {
             <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
               <SectionTitle
                 eyebrow="Все направления"
-                title="Волосы, ногти, косметология и базовый уход в одной локации"
-                text="Страница собрана вокруг понятных направлений, чтобы человек сразу видел нужную категорию."
+                title="Парикмахерские, барбер, ногти и дополнительные услуги в одном месте"
+                text="Каждое направление — своя команда мастеров."
               />
               <div className="mt-10 grid gap-5 lg:grid-cols-2">
                 {serviceGroups.map((group) => (
@@ -198,8 +214,8 @@ export default function Page() {
           <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
             <SectionTitle
               eyebrow="Почему сюда удобно"
-              title="Локальный салон, где важны не обещания, а понятный путь до записи"
-              text="Лендинг делает акцент на том, что действительно влияет на решение."
+              title="Локальный салон, где важны не обещания, а результат"
+              text="Рейтинг 4,9 — не случайность."
             />
             <div className="mt-10 grid gap-5 md:grid-cols-2">
               {advantages.map((item) => (
@@ -216,15 +232,15 @@ export default function Page() {
               <div>
                 <p className="text-xs uppercase tracking-[0.24em] text-stone-400">О салоне</p>
                 <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
-                  Красота рядом, когда не хочется тратить полдня на дорогу и сложную запись
+                  Красота рядом, с заботой о каждом клиенте
                 </h2>
               </div>
               <div className="space-y-5 text-sm leading-8 text-stone-300 sm:text-base">
                 <p>
-                  «Парикмахерская» на Авиамоторной объединяет женский и мужской зал, ногтевой сервис и косметологические процедуры.
+                  Салон «Шарм» на проспекте Мира, 180 объединяет парикмахерский зал, барбер-зал, ногтевой сервис, массаж и эпиляцию в одной локации.
                 </p>
                 <p>
-                  По отзывам гости часто отмечают персонал, качество стрижки, быстрое обслуживание и спокойную атмосферу.
+                  Гости высоко оценивают мастеров, качество стрижки и атмосферу — 4,9 из 5 на Яндекс Картах.
                 </p>
               </div>
             </div>
@@ -234,7 +250,7 @@ export default function Page() {
             <SectionTitle
               eyebrow="Цены"
               title="Базовые цены, с которых удобно начать"
-              text="Точная стоимость зависит от длины волос, объёма работы и выбранного мастера."
+              text="Точная стоимость зависит от объёма работы и выбранного мастера. Администратор рассчитает перед записью."
             />
             <div className="mt-10 overflow-hidden rounded-[2rem] border border-stone-200/80 bg-white">
               <div className="grid grid-cols-[1fr_auto] border-b border-stone-200/80 px-5 py-4 text-xs font-semibold uppercase tracking-[0.22em] text-stone-500 sm:px-8">
@@ -255,7 +271,7 @@ export default function Page() {
               <SectionTitle
                 eyebrow="Отзывы"
                 title="Что чаще всего отмечают гости"
-                text="Ниже не цитаты, а короткий пересказ того, что повторяется в отзывах чаще всего."
+                text="Короткий пересказ того, что повторяется в отзывах на Яндекс Картах чаще всего."
               />
               <div className="mt-10 grid gap-5 lg:grid-cols-3">
                 {reviews.map((review, index) => (
@@ -272,7 +288,7 @@ export default function Page() {
             <SectionTitle
               eyebrow="FAQ"
               title="Коротко о важном перед записью"
-              text="Собрали ответы на вопросы, которые обычно помогают принять решение быстрее."
+              text="Ответы на вопросы, которые обычно помогают принять решение быстрее."
             />
             <div className="mt-10 space-y-4">
               {faqs.map((item) => (
@@ -323,18 +339,17 @@ export default function Page() {
           <section id="contacts" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
             <SectionTitle
               eyebrow="Контакты"
-              title="Как добраться и когда лучше звонить"
-              text="Сделали контактный блок максимально прикладным: адрес, часы, маршрут, телефон и важная информация о доступности."
+              title="Как нас найти"
+              text="Проспект Мира, 180 — рядом с метро ВДНХ."
             />
             <div className="mt-10 grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
               <address className="not-italic rounded-[2rem] border border-stone-200/80 bg-white p-6">
                 <p className="text-xs uppercase tracking-[0.2em] text-stone-500">Адрес</p>
                 <p className="mt-3 text-xl font-semibold text-stone-900">{business.address}</p>
+                <p className="mt-1 text-sm text-stone-500">{business.addressHint}</p>
                 <div className="mt-6 space-y-3 text-sm leading-7 text-stone-600">
-                  <p>Метро {business.metro} — {business.metroDistance}.</p>
-                  <p>Остановка «{business.busStop}» — {business.busDistance}.</p>
-                  <p>{business.schedule.weekdays}, {business.schedule.sunday}.</p>
-                  <p>Вход недоступен для инвалидной коляски.</p>
+                  <p>Метро «{business.metro}» — {business.metroDistance}.</p>
+                  <p>{business.schedule.weekdays}.</p>
                 </div>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                   <a href={business.phoneHref} className="inline-flex items-center justify-center rounded-full bg-stone-900 px-6 py-4 text-sm font-semibold text-white transition hover:bg-stone-800">
@@ -346,15 +361,15 @@ export default function Page() {
                 </div>
               </address>
 
-              {/* Яндекс.Карты — виджет организации 1221763109 */}
+              {/* Яндекс.Карты — проспект Мира, 180 */}
               <div className="overflow-hidden rounded-[2rem] border border-stone-200/80 bg-stone-100 shadow-sm">
                 <iframe
-                  src="https://yandex.ru/map-widget/v1/?um=constructor%3A1221763109&amp;source=constructor&amp;ll=37.713717%2C55.755438&amp;z=16&amp;pt=37.713717%2C55.755438&amp;text=%D0%9F%D0%B0%D1%80%D0%B8%D0%BA%D0%BC%D0%B0%D1%85%D0%B5%D1%80%D1%81%D0%BA%D0%B0%D1%8F&amp;oid=1221763109&amp;ol=biz"
+                  src="https://yandex.ru/map-widget/v1/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9C%D0%B8%D1%80%D0%B0%2C%20180&z=16"
                   width="100%"
                   height="400"
                   frameBorder="0"
                   allowFullScreen
-                  title="Парикмахерская на Яндекс.Картах"
+                  title="Салон Красоты «Шарм» на Яндекс.Картах"
                   className="block w-full"
                   style={{ minHeight: "360px", border: "none" }}
                 />
@@ -371,8 +386,9 @@ export default function Page() {
             </div>
             <div className="space-y-1 text-sm lg:text-right">
               <p>{business.address}</p>
+              <p className="text-stone-400">{business.addressHint}</p>
               <p>{business.phoneDisplay}</p>
-              <p>Пн–Сб 09:00–21:00 • Вс 10:00–19:00</p>
+              <p>{business.schedule.weekdays}</p>
             </div>
           </div>
         </footer>
