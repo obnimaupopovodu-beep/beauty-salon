@@ -29,8 +29,8 @@ export function AdvantagesSection({
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
       <SectionTitle
-        eyebrow="Почему сюда удобно"
-        title="Локальный салон, где важны не обещания, а результат"
+        eyebrow="Почему здесь удобно"
+        title="Салон, где важны не обещания, а результат"
         text="Рейтинг 4,9 — не случайность."
       />
 
