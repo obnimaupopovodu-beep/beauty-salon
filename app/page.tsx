@@ -1,5 +1,7 @@
 import { SectionTitle } from "@/components/section-title";
 import { BookingForm } from "@/components/booking-form";
+import { FaqAccordion } from "@/components/faq-accordion";
+import { AdvantagesSection } from "@/components/advantages-section";
 import {
   advantages,
   business,
@@ -69,10 +71,15 @@ export default function Page() {
                 </div>
 
                 <h1 className="mt-6 max-w-4xl font-display text-5xl leading-[0.95] text-stone-900 sm:text-6xl lg:text-7xl">
-                  Салон красоты «Шарм» на ВДНХ: стрижки, барбер-услуги и маникюр с заботой о каждом клиенте
+                  Салон красоты «Шарм» на ВДНХ
                 </h1>
 
-                <p className="mt-6 max-w-2xl text-base leading-8 text-stone-600 sm:text-lg">
+                {/* Подзаголовок под H1 */}
+                <p className="mt-4 max-w-2xl text-lg font-normal leading-snug text-stone-400 sm:text-xl">
+                  Стрижки, барбер-услуги и маникюр с заботой о каждом клиенте
+                </p>
+
+                <p className="mt-5 max-w-2xl text-base leading-8 text-stone-600">
                   Женские и детские стрижки, барбер-зал, ногтевой сервис, массаж и эпиляция — всё рядом с метро. Можно быстро позвонить, выбрать время или оставить заявку на сайте.
                 </p>
 
@@ -109,7 +116,7 @@ export default function Page() {
                     <dd className="mt-2 text-2xl font-semibold text-stone-900">{business.ratingCount}</dd>
                   </div>
                   <div className="rounded-3xl border border-stone-200/80 bg-white/80 p-5 shadow-sm shadow-stone-200/50">
-                    <dt className="text-xs uppercase tracking-[0.22em] text-stone-500">Яндекс Карты</dt>
+                    <dt className="text-xs uppercase tracking-[0.22em] text-stone-500">Яндекс Карты</dt>
                     <dd className="mt-2 text-2xl font-semibold text-stone-900">4,9 / 5</dd>
                   </div>
                 </dl>
@@ -163,11 +170,12 @@ export default function Page() {
             </div>
           </section>
 
+          {/* Популярные услуги */}
           <section id="services" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
             <SectionTitle
               eyebrow="Популярные услуги"
               title="То, за чем к нам чаще всего приходят"
-              text="Стартовые цены помогают быстро ориентироваться. Если нужен точный расчёт, администратор подскажет по телефону."
+              text="Стартовые цены помогают быстро сориентироваться. Если нужен точный расчёт, администратор подскажет по телефону."
             />
             <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
               {popularServices.map((service) => (
@@ -189,6 +197,7 @@ export default function Page() {
             </div>
           </section>
 
+          {/* Все направления */}
           <section className="bg-white/75">
             <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
               <SectionTitle
@@ -211,22 +220,10 @@ export default function Page() {
             </div>
           </section>
 
-          <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-            <SectionTitle
-              eyebrow="Почему сюда удобно"
-              title="Локальный салон, где важны не обещания, а результат"
-              text="Рейтинг 4,9 — не случайность."
-            />
-            <div className="mt-10 grid gap-5 md:grid-cols-2">
-              {advantages.map((item) => (
-                <article key={item.title} className="rounded-[2rem] border border-stone-200/80 bg-white p-6">
-                  <h3 className="text-xl font-semibold text-stone-900">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-7 text-stone-600">{item.text}</p>
-                </article>
-              ))}
-            </div>
-          </section>
+          {/* Преимущества — клиентский компонент с декорацией */}
+          <AdvantagesSection advantages={advantages} />
 
+          {/* О салоне */}
           <section className="bg-stone-900 text-stone-100">
             <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-24">
               <div>
@@ -240,12 +237,13 @@ export default function Page() {
                   Салон «Шарм» на проспекте Мира, 180 объединяет парикмахерский зал, барбер-зал, ногтевой сервис, массаж и эпиляцию в одной локации.
                 </p>
                 <p>
-                  Гости высоко оценивают мастеров, качество стрижки и атмосферу — 4,9 из 5 на Яндекс Картах.
+                  Гости высоко оценивают мастеров, качество стрижки и атмосферу — 4,9 из 5 на Яндекс Картах.
                 </p>
               </div>
             </div>
           </section>
 
+          {/* Цены */}
           <section id="prices" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
             <SectionTitle
               eyebrow="Цены"
@@ -266,12 +264,13 @@ export default function Page() {
             </div>
           </section>
 
+          {/* Отзывы */}
           <section id="reviews" className="bg-white/75">
             <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
               <SectionTitle
                 eyebrow="Отзывы"
                 title="Что чаще всего отмечают гости"
-                text="Короткий пересказ того, что повторяется в отзывах на Яндекс Картах чаще всего."
+                text="Короткий пересказ того, что повторяется в отзывах на Яндекс Картах чаще всего."
               />
               <div className="mt-10 grid gap-5 lg:grid-cols-3">
                 {reviews.map((review, index) => (
@@ -284,23 +283,17 @@ export default function Page() {
             </div>
           </section>
 
+          {/* FAQ — клиентский компонент с анимацией */}
           <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
             <SectionTitle
               eyebrow="FAQ"
               title="Коротко о важном перед записью"
               text="Ответы на вопросы, которые обычно помогают принять решение быстрее."
             />
-            <div className="mt-10 space-y-4">
-              {faqs.map((item) => (
-                <details key={item.q} className="group rounded-[1.75rem] border border-stone-200/80 bg-white p-6">
-                  <summary className="cursor-pointer list-none text-lg font-semibold text-stone-900">{item.q}</summary>
-                  <p className="mt-4 max-w-3xl text-sm leading-7 text-stone-600">{item.a}</p>
-                </details>
-              ))}
-            </div>
+            <FaqAccordion items={faqs} />
           </section>
 
-          {/* СЕКЦИЯ ЗАПИСИ */}
+          {/* Форма записи */}
           <section id="booking" className="bg-stone-900 text-stone-100">
             <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-24">
               <div>
@@ -335,7 +328,7 @@ export default function Page() {
             </div>
           </section>
 
-          {/* КОНТАКТЫ */}
+          {/* Контакты */}
           <section id="contacts" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
             <SectionTitle
               eyebrow="Контакты"
@@ -361,7 +354,6 @@ export default function Page() {
                 </div>
               </address>
 
-              {/* Яндекс.Карты — проспект Мира, 180 */}
               <div className="overflow-hidden rounded-[2rem] border border-stone-200/80 bg-stone-100 shadow-sm">
                 <iframe
                   src="https://yandex.ru/map-widget/v1/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9C%D0%B8%D1%80%D0%B0%2C%20180&z=16"
