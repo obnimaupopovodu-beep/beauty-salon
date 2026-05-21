@@ -1,7 +1,9 @@
+import Image from "next/image";
 import { SectionTitle } from "@/components/section-title";
 import { BookingForm } from "@/components/booking-form";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { AdvantagesSection } from "@/components/advantages-section";
+import salonLogo from "@/imgs/icon.png";
 import {
   advantages,
   business,
@@ -24,14 +26,24 @@ export default function Page() {
       />
 
       <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(231,221,210,0.45),_transparent_32%),linear-gradient(180deg,_#faf8f5_0%,_#f4efe9_100%)]">
-        <header className="sticky top-0 z-40 border-b border-stone-200/70 bg-stone-50/90 backdrop-blur">
+        <header className="sticky top-0 z-40 border-b border-stone-200/70 bg-stone-50/85 backdrop-blur">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
-            <a href="#top" className="min-w-0">
-              <span className="block font-display text-2xl leading-none text-stone-900">
-                {business.name}
+            <a href="#top" className="flex min-w-0 items-center gap-3">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-stone-200/80 bg-white shadow-sm shadow-stone-200/60">
+                <Image
+                  src={salonLogo}
+                  alt="Логотип салона Шарм"
+                  className="h-10 w-10 object-contain"
+                  priority
+                />
               </span>
-              <span className="mt-1 block text-xs uppercase tracking-[0.2em] text-stone-500">
-                {business.shortLocation}
+              <span className="min-w-0">
+                <span className="block font-display text-2xl leading-none text-stone-900">
+                  {business.name}
+                </span>
+                <span className="mt-1 block text-xs uppercase tracking-[0.2em] text-stone-500">
+                  {business.shortLocation}
+                </span>
               </span>
             </a>
 
@@ -64,6 +76,9 @@ export default function Page() {
 
         <main id="top">
           <section className="relative overflow-hidden">
+            <div aria-hidden className="ornament-blob absolute -left-16 top-16 h-56 w-56 opacity-70" />
+            <div aria-hidden className="ornament-wave absolute right-[-6rem] top-8 h-56 w-[24rem] opacity-45" />
+            <div aria-hidden className="ornament-rings absolute bottom-0 right-[8%] h-40 w-40 opacity-40" />
             <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 sm:py-20 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-24">
               <div className="max-w-3xl">
                 <div className="inline-flex items-center rounded-full border border-stone-200 bg-white/80 px-4 py-2 text-xs font-medium text-stone-600 shadow-sm shadow-stone-200/40">
@@ -123,7 +138,9 @@ export default function Page() {
               </div>
 
               <aside className="relative lg:pl-6">
-                <div className="rounded-[2rem] border border-stone-200/80 bg-white/90 p-6 shadow-soft">
+                <div aria-hidden className="ornament-mesh absolute -left-2 top-12 h-28 w-28 opacity-30" />
+                <div className="relative overflow-hidden rounded-[2rem] border border-stone-200/80 bg-white/90 p-6 shadow-soft">
+                  <div aria-hidden className="ornament-wave absolute -right-10 bottom-2 h-40 w-56 opacity-25" />
                   <div className="rounded-[1.5rem] bg-stone-900 px-5 py-4 text-white">
                     <p className="text-xs uppercase tracking-[0.24em] text-stone-300">Сейчас выгодно</p>
                     <p className="mt-2 text-xl font-semibold">Позвонить или оставить заявку ниже</p>
@@ -145,7 +162,8 @@ export default function Page() {
           </section>
 
           {/* Блок доверия */}
-          <section aria-label="Доверие" className="border-y border-stone-200/80 bg-white/70">
+          <section aria-label="Доверие" className="relative overflow-hidden border-y border-stone-200/80 bg-white/70">
+            <div aria-hidden className="ornament-mesh absolute -right-12 top-1/2 h-36 w-36 -translate-y-1/2 opacity-35" />
             <div className="mx-auto grid max-w-7xl gap-4 px-4 py-6 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
               {trustPoints.map((point) => (
                 <div key={point} className="rounded-2xl border border-stone-200/80 bg-stone-50 px-4 py-4 text-sm text-stone-700">
@@ -156,12 +174,15 @@ export default function Page() {
           </section>
 
           {/* Акции */}
-          <section aria-label="Акции" className="bg-stone-900 text-stone-100">
+          <section aria-label="Акции" className="relative overflow-hidden bg-stone-900 text-stone-100">
+            <div aria-hidden className="ornament-wave ornament-wave-dark absolute left-[-4rem] top-0 h-48 w-[22rem] opacity-30" />
+            <div aria-hidden className="ornament-rings absolute bottom-[-3rem] right-[-1rem] h-48 w-48 opacity-25" />
             <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
               <p className="text-xs uppercase tracking-[0.24em] text-stone-400">Акции сейчас</p>
               <div className="mt-5 grid gap-4 sm:grid-cols-3">
                 {promos.map((promo) => (
-                  <div key={promo.label} className="rounded-2xl border border-stone-700 bg-stone-800 px-5 py-5">
+                  <div key={promo.label} className="relative overflow-hidden rounded-2xl border border-stone-700 bg-stone-800 px-5 py-5">
+                    <div aria-hidden className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-stone-500 to-transparent" />
                     <p className="text-xl font-semibold text-white">{promo.label}</p>
                     <p className="mt-2 text-sm text-stone-400">{promo.description}</p>
                   </div>
@@ -171,7 +192,8 @@ export default function Page() {
           </section>
 
           {/* Популярные услуги */}
-          <section id="services" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          <section id="services" className="relative mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+            <div aria-hidden className="ornament-rings absolute right-4 top-10 h-36 w-36 opacity-35" />
             <SectionTitle
               eyebrow="Популярные услуги"
               title="То, за чем к нам чаще всего приходят"
@@ -181,8 +203,9 @@ export default function Page() {
               {popularServices.map((service) => (
                 <article
                   key={service.title}
-                  className="group rounded-[2rem] border border-stone-200/80 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(140,120,97,0.12)]"
+                  className="group relative overflow-hidden rounded-[2rem] border border-stone-200/80 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(140,120,97,0.12)]"
                 >
+                  <div aria-hidden className="absolute right-0 top-0 h-24 w-24 rounded-full bg-[radial-gradient(circle,_rgba(231,221,210,0.8)_0%,_rgba(255,255,255,0)_70%)]" />
                   <p className="text-sm text-stone-500">{service.price}</p>
                   <h3 className="mt-3 text-xl font-semibold text-stone-900">{service.title}</h3>
                   <p className="mt-3 text-sm leading-7 text-stone-600">{service.text}</p>
@@ -198,7 +221,8 @@ export default function Page() {
           </section>
 
           {/* Все направления */}
-          <section className="bg-white/75">
+          <section className="relative overflow-hidden bg-white/75">
+            <div aria-hidden className="ornament-blob absolute right-[-6rem] top-10 h-64 w-64 opacity-40" />
             <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
               <SectionTitle
                 eyebrow="Все направления"
@@ -207,7 +231,8 @@ export default function Page() {
               />
               <div className="mt-10 grid gap-5 lg:grid-cols-2">
                 {serviceGroups.map((group) => (
-                  <section key={group.title} className="rounded-[2rem] border border-stone-200/80 bg-stone-50 p-6">
+                  <section key={group.title} className="relative overflow-hidden rounded-[2rem] border border-stone-200/80 bg-stone-50 p-6">
+                    <div aria-hidden className="absolute -right-10 -top-12 h-32 w-32 rounded-full border border-stone-200/70" />
                     <h3 className="text-2xl font-semibold text-stone-900">{group.title}</h3>
                     <ul className="mt-5 grid gap-3 text-sm leading-7 text-stone-600 sm:grid-cols-2">
                       {group.items.map((item) => (
@@ -224,7 +249,9 @@ export default function Page() {
           <AdvantagesSection advantages={advantages} />
 
           {/* О салоне */}
-          <section className="bg-stone-900 text-stone-100">
+          <section className="relative overflow-hidden bg-stone-900 text-stone-100">
+            <div aria-hidden className="ornament-wave ornament-wave-dark absolute right-[-4rem] top-6 h-48 w-[24rem] opacity-20" />
+            <div aria-hidden className="absolute left-[8%] top-10 h-24 w-24 rounded-full border border-stone-700/70" />
             <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-24">
               <div>
                 <p className="text-xs uppercase tracking-[0.24em] text-stone-400">О салоне</p>
@@ -244,7 +271,8 @@ export default function Page() {
           </section>
 
           {/* Цены */}
-          <section id="prices" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          <section id="prices" className="relative mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+            <div aria-hidden className="ornament-mesh absolute left-0 top-16 h-28 w-28 opacity-30" />
             <SectionTitle
               eyebrow="Цены"
               title="Базовые цены, с которых удобно начать"
@@ -265,7 +293,8 @@ export default function Page() {
           </section>
 
           {/* Отзывы */}
-          <section id="reviews" className="bg-white/75">
+          <section id="reviews" className="relative overflow-hidden bg-white/75">
+            <div aria-hidden className="ornament-wave absolute left-[-5rem] bottom-0 h-44 w-[22rem] opacity-30" />
             <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
               <SectionTitle
                 eyebrow="Отзывы"
@@ -274,7 +303,7 @@ export default function Page() {
               />
               <div className="mt-10 grid gap-5 lg:grid-cols-3">
                 {reviews.map((review, index) => (
-                  <article key={review} className="rounded-[2rem] border border-stone-200/80 bg-stone-50 p-6">
+                  <article key={review} className="relative rounded-[2rem] border border-stone-200/80 bg-stone-50 p-6">
                     <p className="text-xs uppercase tracking-[0.2em] text-stone-500">Отзыв {index + 1}</p>
                     <p className="mt-4 text-sm leading-7 text-stone-700">{review}</p>
                   </article>
@@ -284,7 +313,8 @@ export default function Page() {
           </section>
 
           {/* FAQ — клиентский компонент с анимацией */}
-          <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          <section className="relative mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+            <div aria-hidden className="ornament-rings absolute right-0 top-8 h-40 w-40 opacity-30" />
             <SectionTitle
               eyebrow="FAQ"
               title="Коротко о важном перед записью"
@@ -294,7 +324,9 @@ export default function Page() {
           </section>
 
           {/* Форма записи */}
-          <section id="booking" className="bg-stone-900 text-stone-100">
+          <section id="booking" className="relative overflow-hidden bg-stone-900 text-stone-100">
+            <div aria-hidden className="ornament-blob absolute left-[-5rem] bottom-[-5rem] h-72 w-72 opacity-20" />
+            <div aria-hidden className="ornament-wave ornament-wave-dark absolute right-[-2rem] top-8 h-52 w-[24rem] opacity-20" />
             <div className="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8 lg:py-24">
               <div>
                 <p className="text-xs uppercase tracking-[0.24em] text-stone-400">Форма записи</p>
@@ -329,7 +361,8 @@ export default function Page() {
           </section>
 
           {/* Контакты */}
-          <section id="contacts" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          <section id="contacts" className="relative mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+            <div aria-hidden className="ornament-mesh absolute right-4 top-16 h-28 w-28 opacity-35" />
             <SectionTitle
               eyebrow="Контакты"
               title="Как нас найти"
@@ -370,11 +403,21 @@ export default function Page() {
           </section>
         </main>
 
-        <footer className="border-t border-stone-200/80 bg-white/80">
+        <footer className="relative overflow-hidden border-t border-stone-200/80 bg-white/80">
+          <div aria-hidden className="ornament-wave absolute left-[-4rem] top-0 h-36 w-[18rem] opacity-20" />
           <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8 text-sm text-stone-600 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8">
-            <div>
-              <p className="font-display text-2xl text-stone-900">{business.name}</p>
+            <div className="flex items-center gap-4">
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-[1.25rem] border border-stone-200 bg-white shadow-sm shadow-stone-200/60">
+                <Image
+                  src={salonLogo}
+                  alt="Логотип салона Шарм"
+                  className="h-11 w-11 object-contain"
+                />
+              </span>
+              <div>
+                <p className="font-display text-2xl text-stone-900">{business.name}</p>
               <p className="mt-2 max-w-xl leading-7">{business.tagline}</p>
+              </div>
             </div>
             <div className="space-y-1 text-sm lg:text-right">
               <p>{business.address}</p>
