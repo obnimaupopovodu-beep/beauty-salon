@@ -24,23 +24,26 @@ body {
   background: rgba(41, 37, 36, 0.14);
 }
 
-/* ─── Декоративные фигуры ──────────────────────────────────────────
-   Все ornament-* абсолютно позиционированы внутри relative-родителя.
-   z-index: -1  →  уходят за весь контент секции
-   pointer-events: none  →  не перехватывают клики/тапы
-   Родитель обязан иметь position: relative + overflow: hidden
+/* ─── Декоративные фигуры ────────────────────────────────────────
+   Схема:
+   1. Родитель: position:relative + overflow:hidden
+   2. Фигуры: position:absolute + z-index:-1  → уходят ЗА фон родителя
+   3. Контент: position:relative + isolation:isolate  → создаёт
+      собственный stacking context, поэтому z-index фигур (-1)
+      считается относительно родителя, а не страницы.
+      Без isolation фигуры могут уйти под background-color родителя.
 ──────────────────────────────────────────────────────────────────── */
 [class*="ornament-"] {
   position: absolute;
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
   user-select: none;
 }
 
-/* Поднимаем весь реальный контент секций выше фигур */
-.ornament-content {
+/* Оборачивай реальный контент секции в этот класс */
+.section-inner {
   position: relative;
-  z-index: 1;
+  isolation: isolate;
 }
 
 .ornament-blob {
