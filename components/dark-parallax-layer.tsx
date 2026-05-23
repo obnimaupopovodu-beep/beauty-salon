@@ -7,7 +7,8 @@ import { WaveOrnament } from "@/components/wave-ornament";
 /**
  * Параллакс-слой для тёмных секций.
  * Фигуры движутся в противоположном направлении скролла — создают эффект глубины.
- * speed: 0.0 — нет движения, 1.0 — максимальное смещение
+ * WaveOrnament получает тот же scrollYProgress — анимация волны
+ * полностью синхронизирована с parallax-смещением.
  */
 export function DarkParallaxLayer({ speed = 0.28 }: { speed?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -17,7 +18,6 @@ export function DarkParallaxLayer({ speed = 0.28 }: { speed?: number }) {
     offset: ["start end", "end start"],
   });
 
-  // При скролле сверху вниз (progress 0→1) слой идёт вверх (отрицательный translateY)
   const y = useTransform(scrollYProgress, [0, 1], ["0%", `${-speed * 100}%`]);
 
   return (
@@ -43,9 +43,10 @@ export function DarkParallaxLayer({ speed = 0.28 }: { speed?: number }) {
             opacity: 0.18,
           }}
         />
-        {/* Волна справа-сверху — теперь живой SVG с анимацией потока */}
+        {/* Волна справа-сверху — scroll-driven поток */}
         <WaveOrnament
           dark
+          scrollProgress={scrollYProgress}
           style={{
             position: "absolute",
             right: "-4rem",
