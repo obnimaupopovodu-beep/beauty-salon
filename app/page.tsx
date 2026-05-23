@@ -4,6 +4,7 @@ import { BookingForm } from "@/components/booking-form";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { AdvantagesSection } from "@/components/advantages-section";
 import { DarkParallaxLayer } from "@/components/dark-parallax-layer";
+import { ReviewsWave } from "@/components/reviews-wave";
 import salonLogo from "@/imgs/icon.png";
 import imgInterier from "@/imgs/interier.webp";
 import imgHaircut from "@/imgs/haircut.webp";
@@ -104,16 +105,18 @@ export default function Page() {
                     <dd className="mt-2 text-2xl font-semibold text-stone-900">4,9 / 5</dd>
                   </div>
                 </dl>
-                
+
+                {/* Картинка cosy — адаптивная, скрыта на мобиле <sm */}
+                <div className="mt-10 hidden sm:block">
                   <Image
-              src={cosy}
-              alt="Результат работы мастера"
-              width={460}
-              height={460}
-              className="object-cover mt-20 flex flex-col gap-3 sm:flex-row"
-              loading="lazy"
-            />
-                
+                    src={cosy}
+                    alt="Cosy professionally flawless"
+                    width={420}
+                    height={420}
+                    className="w-full max-w-[300px] opacity-85 sm:max-w-[360px] lg:max-w-[420px]"
+                    loading="lazy"
+                  />
+                </div>
               </div>
               <aside className="relative z-20 flex flex-col gap-5 lg:pl-4">
                 <div className="relative overflow-hidden rounded-[2rem] border border-stone-200/80 shadow-sm" style={{ aspectRatio: "4/3" }}>
@@ -261,9 +264,9 @@ export default function Page() {
             </div>
           </section>
 
-          {/* Отзывы */}
+          {/* Отзывы — анимированная волна через ReviewsWave */}
           <section id="reviews" className="relative overflow-hidden bg-white/75">
-            <div aria-hidden className="ornament-wave" style={{ ...O, left: "-5rem", bottom: 0, width: "22rem", height: "11rem", opacity: 0.3 }} />
+            <ReviewsWave />
             <div className="relative z-20 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
               <SectionTitle eyebrow="Отзывы" title="Что чаще всего отмечают гости" text="Короткий пересказ того, что повторяется в отзывах на Яндекс Картах чаще всего." />
               <div className="mt-10 grid gap-5 lg:grid-cols-3">
