@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { WaveOrnament } from "@/components/wave-ornament";
 
 /**
  * Параллакс-слой для тёмных секций.
@@ -42,9 +43,9 @@ export function DarkParallaxLayer({ speed = 0.28 }: { speed?: number }) {
             opacity: 0.18,
           }}
         />
-        {/* Волна справа-сверху */}
-        <div
-          className="ornament-wave ornament-wave-dark"
+        {/* Волна справа-сверху — теперь живой SVG с анимацией потока */}
+        <WaveOrnament
+          dark
           style={{
             position: "absolute",
             right: "-4rem",
