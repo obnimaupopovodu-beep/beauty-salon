@@ -11,6 +11,7 @@ import imgHaircut1 from "@/imgs/haircut1.webp";
 import imgHaircut2 from "@/imgs/haircut2.webp";
 import imgManicure from "@/imgs/manicure.webp";
 import imgManicure1 from "@/imgs/manicure1.webp";
+import cosy from "@/imgs/cosy-professionally-flawless.svg";
 import {
   advantages,
   business,
@@ -44,7 +45,7 @@ export default function Page() {
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
             <a href="#top" className="flex min-w-0 items-center gap-3">
               <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-stone-200/80 bg-white shadow-sm shadow-stone-200/60">
-                <Image src={salonLogo} alt="Логотип салона Шарм" className="h-10 w-10 object-contain" priority />
+                <Image src={salonLogo} alt="Логотип салона Шарм" className="h-14 w-14 object-contain" priority />
               </span>
               <span className="min-w-0">
                 <span className="block font-display text-2xl leading-none text-stone-900">{business.name}</span>
@@ -103,6 +104,16 @@ export default function Page() {
                     <dd className="mt-2 text-2xl font-semibold text-stone-900">4,9 / 5</dd>
                   </div>
                 </dl>
+                
+                  <Image
+              src={cosy}
+              alt="Результат работы мастера"
+              width={460}
+              height={460}
+              className="object-cover mt-20 flex flex-col gap-3 sm:flex-row"
+              loading="lazy"
+            />
+                
               </div>
               <aside className="relative z-20 flex flex-col gap-5 lg:pl-4">
                 <div className="relative overflow-hidden rounded-[2rem] border border-stone-200/80 shadow-sm" style={{ aspectRatio: "4/3" }}>
@@ -327,7 +338,7 @@ export default function Page() {
           <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8 text-sm text-stone-600 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8">
             <div className="flex items-center gap-4">
               <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-[1.25rem] border border-stone-200 bg-white shadow-sm shadow-stone-200/60">
-                <Image src={salonLogo} alt="Логотип салона Шарм" className="h-11 w-11 object-contain" />
+                <Image src={salonLogo} alt="Логотип салона Шарм" className="h-14 w-14 object-contain" />
               </span>
               <div>
                 <p className="font-display text-2xl text-stone-900">{business.name}</p>

@@ -97,7 +97,7 @@ export function AdvantagesSection({
               alt="Результат работы мастера"
               width={160}
               height={160}
-              className="relative rounded-[1.5rem] border border-stone-200/80 object-cover shadow-sm shadow-stone-300/30"
+              className="object-cover"
               loading="lazy"
             />
           </motion.div>
