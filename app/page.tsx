@@ -310,10 +310,10 @@ export default function Page() {
             </div>
           </section>
 
-          {/* Контакты */}
+          {/* Контакты — pb-20 на мобиле компенсирует высоту фиксированной CTA-панели */}
           <section id="contacts" className="relative overflow-hidden">
             <div aria-hidden className="ornament-mesh" style={{ ...O, right: "1rem", top: "3rem", width: "7rem", height: "7rem", opacity: 0.35 }} />
-            <div className="relative z-20 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+            <div className="relative z-20 mx-auto max-w-7xl px-4 py-16 pb-20 sm:pb-16 sm:px-6 lg:px-8 lg:py-24">
               <SectionTitle eyebrow="Контакты" title="Как нас найти" text="Проспект Мира, 180 — рядом с метро ВДНХ." />
               <div className="mt-10 grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
                 <address className="not-italic rounded-[2rem] border border-stone-200/80 bg-white p-6">
@@ -337,7 +337,8 @@ export default function Page() {
           </section>
         </main>
 
-        <footer className="border-t border-stone-200/80 bg-white/80">
+        {/* pb-20 sm:pb-0 — отступ снизу только на мобиле под фиксированную CTA-панель */}
+        <footer className="border-t border-stone-200/80 bg-white/80 pb-20 sm:pb-0">
           <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8 text-sm text-stone-600 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8">
             <div className="flex items-center gap-4">
               <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-[1.25rem] border border-stone-200 bg-white shadow-sm shadow-stone-200/60">
