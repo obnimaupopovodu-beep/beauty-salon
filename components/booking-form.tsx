@@ -38,9 +38,7 @@ export function BookingForm({ phoneDisplay, phoneHref }: BookingFormProps) {
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Минимальная дата — сегодня
   const today = new Date().toISOString().split("T")[0];
-  // Максимальная — 60 дней вперёд
   const maxDate = new Date(Date.now() + 60 * 24 * 60 * 60 * 1000)
     .toISOString()
     .split("T")[0];
@@ -87,7 +85,6 @@ export function BookingForm({ phoneDisplay, phoneHref }: BookingFormProps) {
     }
   }
 
-  // --- Успех ---
   if (status === "success") {
     return (
       <div className="rounded-[2rem] bg-stone-50 p-8 text-stone-900 shadow-[0_24px_80px_rgba(12,10,9,0.22)] flex flex-col items-center text-center gap-4">
@@ -195,7 +192,7 @@ export function BookingForm({ phoneDisplay, phoneHref }: BookingFormProps) {
             type="date"
             min={today}
             max={maxDate}
-            className="mt-2 w-full min-w-0 rounded-2xl border border-stone-300 bg-white px-2 py-3 sm:px-4 outline-none transition focus:border-stone-900"
+            className="mt-2 block w-full min-w-0 rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-stone-900"
           />
         </div>
 
@@ -208,7 +205,7 @@ export function BookingForm({ phoneDisplay, phoneHref }: BookingFormProps) {
             id="preferred_time"
             name="preferred_time"
             defaultValue=""
-            className="mt-2 w-full min-w-0 rounded-2xl border border-stone-300 bg-white px-2 py-3 sm:px-4 outline-none transition focus:border-stone-900"
+            className="mt-2 w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-stone-900"
           >
             <option value="">Любое</option>
             {TIME_SLOTS.map((t) => (
@@ -236,7 +233,6 @@ export function BookingForm({ phoneDisplay, phoneHref }: BookingFormProps) {
         </div>
       </div>
 
-      {/* Общая ошибка */}
       {status === "error" && errorMessage && (
         <div className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {errorMessage}
