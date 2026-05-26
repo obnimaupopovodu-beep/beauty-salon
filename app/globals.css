@@ -24,6 +24,12 @@ body {
   background: rgba(41, 37, 36, 0.14);
 }
 
+/* ─── date input: убираем лишний отступ у иконки календаря ─────────── */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  margin-left: 0;
+  padding-left: 0;
+}
+
 /* ─── Декоративные фигуры ────────────────────────────────────────
    Схема:
    1. Родитель секции: position:relative + overflow:hidden
