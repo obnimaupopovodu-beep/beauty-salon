@@ -113,7 +113,7 @@ export function BookingForm({ phoneDisplay, phoneHref }: BookingFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-[2rem] bg-stone-50 p-6 text-stone-900 shadow-[0_24px_80px_rgba(12,10,9,0.22)]"
+      className="overflow-hidden rounded-[2rem] bg-stone-50 p-4 sm:p-6 text-stone-900 shadow-[0_24px_80px_rgba(12,10,9,0.22)]"
       noValidate
     >
       <div className="grid gap-5 sm:grid-cols-2">
@@ -185,7 +185,7 @@ export function BookingForm({ phoneDisplay, phoneHref }: BookingFormProps) {
         </div>
 
         {/* Дата */}
-        <div className="sm:col-span-1">
+        <div className="min-w-0 sm:col-span-1">
           <label htmlFor="preferred_date" className="text-sm font-medium text-stone-700">
             Удобная дата
           </label>
@@ -195,12 +195,12 @@ export function BookingForm({ phoneDisplay, phoneHref }: BookingFormProps) {
             type="date"
             min={today}
             max={maxDate}
-            className="mt-2 w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-stone-900"
+            className="mt-2 w-full min-w-0 rounded-2xl border border-stone-300 bg-white px-2 py-3 sm:px-4 outline-none transition focus:border-stone-900"
           />
         </div>
 
         {/* Время */}
-        <div className="sm:col-span-1">
+        <div className="min-w-0 sm:col-span-1">
           <label htmlFor="preferred_time" className="text-sm font-medium text-stone-700">
             Удобное время
           </label>
@@ -208,7 +208,7 @@ export function BookingForm({ phoneDisplay, phoneHref }: BookingFormProps) {
             id="preferred_time"
             name="preferred_time"
             defaultValue=""
-            className="mt-2 w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 outline-none transition focus:border-stone-900"
+            className="mt-2 w-full min-w-0 rounded-2xl border border-stone-300 bg-white px-2 py-3 sm:px-4 outline-none transition focus:border-stone-900"
           >
             <option value="">Любое</option>
             {TIME_SLOTS.map((t) => (
