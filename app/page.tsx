@@ -46,7 +46,7 @@ export default function Page() {
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
             <a href="#top" className="flex min-w-0 items-center gap-3">
               <span className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-stone-200/80 bg-white shadow-sm shadow-stone-200/60">
-                <Image src={salonLogo} alt="Логотип салона Шарм" className="h-14 w-14 object-contain" priority />
+                <Image src={salonLogo} alt={`Логотип салона ${business.name}`} className="h-14 w-14 object-contain" priority />
               </span>
               <span className="min-w-0">
                 <span className="block font-display text-2xl leading-none text-stone-900">{business.name}</span>
@@ -78,13 +78,13 @@ export default function Page() {
                   Метро «{business.metro}» • {business.schedule.today}
                 </div>
                 <h1 className="mt-6 max-w-4xl font-display text-5xl leading-[0.95] text-stone-900 sm:text-6xl lg:text-7xl">
-                  Салон красоты «Шарм» на ВДНХ
+                  {business.name} — салон красоты у метро «{business.metro}»
                 </h1>
                 <p className="mt-4 max-w-2xl text-lg font-normal leading-snug text-stone-400 sm:text-xl">
-                  Стрижки, барбер-услуги и маникюр с заботой о каждом клиенте
+                  Маникюр, педикюр, парикмахерские услуги и лазерная эпиляция с заботой о каждом клиенте
                 </p>
                 <p className="mt-5 max-w-2xl text-base leading-8 text-stone-600">
-                  Женские и детские стрижки, барбер-зал, ногтевой сервис, массаж и эпиляция — всё рядом с метро.
+                  Ногтевая студия, парикмахерская и лазерная эпиляция — всё в одном месте. Можно прийти с собакой и угостяться сортовым кофе.
                 </p>
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <a href="#booking" className="inline-flex items-center justify-center rounded-full bg-stone-900 px-6 py-4 text-sm font-semibold text-white transition hover:bg-stone-800">Записаться</a>
@@ -102,7 +102,7 @@ export default function Page() {
                   </div>
                   <div className="rounded-3xl border border-stone-200/80 bg-white/80 p-5 shadow-sm shadow-stone-200/50">
                     <dt className="text-xs uppercase tracking-[0.22em] text-stone-500">Яндекс Карты</dt>
-                    <dd className="mt-2 text-2xl font-semibold text-stone-900">4,9 / 5</dd>
+                    <dd className="mt-2 text-2xl font-semibold text-stone-900">{business.ratingDisplay} / 5</dd>
                   </div>
                 </dl>
 
@@ -120,11 +120,11 @@ export default function Page() {
               </div>
               <aside className="relative z-20 flex flex-col gap-5 lg:pl-4">
                 <div className="relative overflow-hidden rounded-[2rem] border border-stone-200/80 shadow-sm" style={{ aspectRatio: "4/3" }}>
-                  <Image src={imgInterier} alt="Интерьер салона красоты Шарм" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" priority />
+                  <Image src={imgInterier} alt={`Интерьер салона ${business.name}`} fill className="object-cover" sizes="(max-width: 1024px) 100vw, 40vw" priority />
                   <div className="absolute inset-0 bg-gradient-to-t from-stone-900/30 to-transparent" />
                   <div className="absolute bottom-4 left-5 rounded-2xl border border-white/20 bg-stone-900/60 px-4 py-3 backdrop-blur-sm">
                     <p className="text-xs uppercase tracking-[0.2em] text-stone-300">Интерьер</p>
-                    <p className="mt-0.5 text-sm font-semibold text-white">Просп. Мира, 180</p>
+                    <p className="mt-0.5 text-sm font-semibold text-white">ул. Анны Северьяновой, 3</p>
                   </div>
                 </div>
                 <div className="rounded-[2rem] border border-stone-200/80 bg-white/90 p-6">
@@ -160,7 +160,7 @@ export default function Page() {
           <section aria-label="Акции" className="relative overflow-hidden bg-stone-900 text-stone-100">
             <DarkParallaxLayer speed={0.25} />
             <div className="relative z-10 mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-              <p className="text-xs uppercase tracking-[0.24em] text-stone-400">Акции сейчас</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-stone-400">Особенности салона</p>
               <div className="mt-5 grid gap-4 sm:grid-cols-3">
                 {promos.map((promo) => (
                   <div key={promo.label} className="rounded-2xl border border-stone-700 bg-stone-800 px-5 py-5">
@@ -179,8 +179,8 @@ export default function Page() {
               <SectionTitle eyebrow="Популярные услуги" title="То, за чем к нам чаще всего приходят" text="Стартовые цены помогают быстро сориентироваться. Если нужен точный расчёт, администратор подскажет по телефону." />
               <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
                 {popularServices.map((service, i) => {
-                  const photos = [imgHaircut, imgHaircut1, imgManicure, imgManicure1];
-                  const alts = ["Женская стрижка", "Стрижка в салоне", "Маникюр", "Ногтевой сервис"];
+                  const photos = [imgManicure, imgManicure1, imgHaircut, imgHaircut1];
+                  const alts = ["Маникюр", "Педикюр", "Стрижка и окрашивание", "Лазерная эпиляция"];
                   const photo = photos[i] ?? null;
                   return (
                     <article key={service.title} className="group overflow-hidden rounded-[2rem] border border-stone-200/80 bg-white transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(140,120,97,0.12)]">
@@ -206,7 +206,7 @@ export default function Page() {
           <section className="relative overflow-hidden bg-white/75">
             <div aria-hidden className="ornament-blob" style={{ ...O, right: "-5rem", top: "2rem", width: "16rem", height: "16rem", opacity: 0.4 }} />
             <div className="relative z-20 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-              <SectionTitle eyebrow="Все направления" title="Парикмахерские, барбер, ногти и дополнительные услуги в одном месте" text="Каждое направление — своя команда мастеров." />
+              <SectionTitle eyebrow="Все направления" title="Ногтевая студия, парикмахерская и эпиляция в одном месте" text="Каждое направление — своя команда мастеров." />
               <div className="mt-10 grid gap-5 lg:grid-cols-2">
                 {serviceGroups.map((group) => (
                   <section key={group.title} className="overflow-hidden rounded-[2rem] border border-stone-200/80 bg-stone-50 p-6">
@@ -230,15 +230,15 @@ export default function Page() {
             <DarkParallaxLayer speed={0.3} />
             <div className="relative z-10 mx-auto grid max-w-7xl gap-0 px-0 lg:grid-cols-2">
               <div className="relative min-h-[320px] overflow-hidden lg:min-h-[480px]">
-                <Image src={imgHaircut2} alt="Мастер за работой в салоне Шарм" fill className="object-cover object-center" sizes="50vw" loading="lazy" />
+                <Image src={imgHaircut2} alt={`Мастер за работой в салоне ${business.name}`} fill className="object-cover object-center" sizes="50vw" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-stone-900/60 lg:bg-gradient-to-l" />
               </div>
               <div className="flex flex-col justify-center px-8 py-16 lg:px-12 lg:py-24">
                 <p className="text-xs uppercase tracking-[0.24em] text-stone-400">О салоне</p>
                 <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">Красота рядом, с заботой о каждом клиенте</h2>
                 <div className="mt-6 space-y-4 text-sm leading-8 text-stone-300 sm:text-base">
-                  <p>Салон «Шарм» на проспекте Мира, 180 объединяет парикмахерский зал, барбер-зал, ногтевой сервис, массаж и эпиляцию в одной локации.</p>
-                  <p>Гости высоко оценивают мастеров, качество стрижки и атмосферу — 4,9 из 5 на Яндекс Картах.</p>
+                  <p>Салон «{business.name}» на ул. Анны Северьяновой, 3 объединяет ногтевую студию, парикмахерскую и лазерную эпиляцию в одной локации.</p>
+                  <p>Гости высоко оценивают мастеров и атмосферу — {business.ratingDisplay} из 5 на Основе {business.ratingCount} оценок на Яндекс Картах.</p>
                 </div>
                 <a href="#booking" className="mt-8 inline-flex w-fit items-center justify-center rounded-full border border-stone-600 px-6 py-4 text-sm font-semibold text-white transition hover:border-stone-400">Записаться →</a>
               </div>
@@ -314,7 +314,7 @@ export default function Page() {
           <section id="contacts" className="relative overflow-hidden">
             <div aria-hidden className="ornament-mesh" style={{ ...O, right: "1rem", top: "3rem", width: "7rem", height: "7rem", opacity: 0.35 }} />
             <div className="relative z-20 mx-auto max-w-7xl px-4 py-16 pb-20 sm:pb-16 sm:px-6 lg:px-8 lg:py-24">
-              <SectionTitle eyebrow="Контакты" title="Как нас найти" text="Проспект Мира, 180 — рядом с метро ВДНХ." />
+              <SectionTitle eyebrow="Контакты" title="Как нас найти" text={`Ул. Анны Северьяновой, 3, стр. 3 — автобус до остановки «${business.busStop}» ${business.busDistance}.`} />
               <div className="mt-10 grid gap-6 lg:grid-cols-[0.92fr_1.08fr]">
                 <address className="not-italic rounded-[2rem] border border-stone-200/80 bg-white p-6">
                   <p className="text-xs uppercase tracking-[0.2em] text-stone-500">Адрес</p>
@@ -330,7 +330,7 @@ export default function Page() {
                   </div>
                 </address>
                 <div className="overflow-hidden rounded-[2rem] border border-stone-200/80 bg-stone-100 shadow-sm">
-                  <iframe src="https://yandex.ru/map-widget/v1/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%BF%D1%80%D0%BE%D1%81%D0%BF%D0%B5%D0%BA%D1%82%20%D0%9C%D0%B8%D1%80%D0%B0%2C%20180&z=16" width="100%" height="400" frameBorder="0" allowFullScreen title="Салон Красоты «Шарм» на Яндекс.Картах" className="block w-full" style={{ minHeight: "360px", border: "none" }} />
+                  <iframe src="https://yandex.ru/map-widget/v1/?text=%D1%83%D0%BB%D0%B8%D1%86%D0%B0+%D0%90%D0%BD%D0%BD%D1%8B+%D0%A1%D0%B5%D0%B2%D0%B5%D1%80%D1%8C%D1%8F%D0%BD%D0%BE%D0%B2%D0%BE%D0%B9+3+%D1%81%D1%82%D1%80+3+%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0&z=17" width="100%" height="400" frameBorder="0" allowFullScreen title={`Салон Красоты «${business.name}» на Яндекс.Картах`} className="block w-full" style={{ minHeight: "360px", border: "none" }} />
                 </div>
               </div>
             </div>
@@ -342,7 +342,7 @@ export default function Page() {
           <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-8 text-sm text-stone-600 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8">
             <div className="flex items-center gap-4">
               <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-[1.25rem] border border-stone-200 bg-white shadow-sm shadow-stone-200/60">
-                <Image src={salonLogo} alt="Логотип салона Шарм" className="h-14 w-14 object-contain" />
+                <Image src={salonLogo} alt={`Логотип салона ${business.name}`} className="h-14 w-14 object-contain" />
               </span>
               <div>
                 <p className="font-display text-2xl text-stone-900">{business.name}</p>
