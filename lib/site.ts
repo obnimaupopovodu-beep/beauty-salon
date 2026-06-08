@@ -58,7 +58,7 @@ export const trustPoints = [
 ] as const;
 
 export const promos = [
-  { label: "Собаки welcome", description: "Приходите вместе с питомцем» },
+  { label: "Собаки welcome", description: "Приходите вместе с питомцем" },
   { label: "Сортовой кофе", description: "В подарок каждому клиенту" },
   { label: "Душ в наличии", description: "Актуально после лазерной эпиляции" },
 ] as const;
